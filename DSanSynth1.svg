@@ -1,0 +1,149 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg
+  viewBox="0 0 400 400"
+  style="background-color: #000;"
+  version="1.1"
+  xmlns="http://www.w3.org/2000/svg"
+>
+    <style>
+		#button {
+		    opacity: 0.5;
+			cursor: pointer;     
+		}
+
+        #button:hover
+        {
+            opacity: 0.75;
+        }
+        #button:active
+        {
+            fill: #FF5500;
+            opacity: 1.0;
+        }
+	</style>
+
+    <script type="text/javascript">
+    <![CDATA[
+    
+    // https://killedbyapixel.github.io/ZzFX/  for the sound
+    // thanks to Mr.Doob for the inspiration 
+    
+    function MakeCircle( x, y, r, color ) 
+    {
+        const circle = document.createElementNS( 'http://www.w3.org/2000/svg', 'circle' );
+        circle.setAttribute( 'id', 'button' );
+        circle.setAttribute( 'cx', x );
+        circle.setAttribute( 'cy', y );
+        circle.setAttribute( 'r', r );
+        circle.setAttribute( 'fill', color );
+
+        return circle;
+    }
+
+    const zzfxV = 0.3;
+    const zzfxX = new(window.AudioContext||webkitAudioContext);
+    const zzfx = (p=1,k=.05,b=220,e=0,r=0,t=.1,q=0,D=1,u=0,y=0,v=0,z=0,l=0,E=0,A=0,F=0,c=0,w=1,m=0,B=0)=>{let M=Math,R=44100,d=2*M.PI,G=u*=500*d/R/R,C=b*=(1-k+2*k*M.random(k=[]))*d/R,g=0,H=0,a=0,n=1,I=0,J=0,f=0,x,h;e=R*e+9;m*=R;r*=R;t*=R;c*=R;y*=500*d/R**3;A*=d/R;v*=d/R;z*=R;l=R*l|0;for(h=e+m+r+t+c|0;a<h;k[a++]=f)++J%(100*F|0)||(f=q?1<q?2<q?3<q?M.sin((g%d)**3):M.max(M.min(M.tan(g),1),-1):1-(2*g/d%2+2)%2:1-4*M.abs(M.round(g/d)-g/d):M.sin(g),f=(l?1-B+B*M.sin(d*a/l):1)*(0<f?1:-1)*M.abs(f)**D*p*zzfxV*(a<e?a/e:a<e+m?1-(a-e)/m*(1-w):a<e+m+r?w:a<h-c?(h-a-c)/t*w:0),f=c?f/2+(c>a?0:(a<h-c?1:(h-a)/c)*k[a-c|0]/2):f),x=(b+=u+=y)*M.cos(A*H++),g+=x-x*E*(1-1E9*(M.sin(a)+1)%2),n&&++n>z&&(b+=v,C+=v,n=0),!l||++I%l||(b=C,u=G,n||=1);p=zzfxX.createBuffer(1,h,R);p.getChannelData(0).set(k);b=zzfxX.createBufferSource();b.buffer=p;b.connect(zzfxX.destination);b.start();return b};
+
+    var whiteNotes = [];   
+    var blackNotes = [];
+
+    for ( var i = 0; i < 7; i += 1 ) 
+    {
+        const c = MakeCircle( i * 40, 200, 20, '#0031FF' )      
+        whiteNotes.push(c);
+        document.documentElement.appendChild( c );
+    }
+
+    var offset = 20;
+    for ( var i = 0; i < 5; i += 1 ) 
+    {
+        if (i > 1)
+        {
+            offset = 60;
+        }
+        const c = MakeCircle( i * 40 + offset, 165, 20, '#00219F' )      
+        blackNotes.push(c);
+        document.documentElement.appendChild( c );
+    }
+
+    whiteNotes[0].addEventListener( 'click', onClick_C );
+    whiteNotes[1].addEventListener( 'click', onClick_D );
+    whiteNotes[2].addEventListener( 'click', onClick_E );
+    whiteNotes[3].addEventListener( 'click', onClick_F );
+    whiteNotes[4].addEventListener( 'click', onClick_G );
+    whiteNotes[5].addEventListener( 'click', onClick_A );
+    whiteNotes[6].addEventListener( 'click', onClick_B );
+
+    blackNotes[0].addEventListener( 'click', onClick_Db);
+    blackNotes[1].addEventListener( 'click', onClick_Eb);
+    blackNotes[2].addEventListener( 'click', onClick_Gb);
+    blackNotes[3].addEventListener( 'click', onClick_Ab);
+    blackNotes[4].addEventListener( 'click', onClick_Bb);
+
+    const button = document.getElementById( 'button' );
+
+    function onClick_C()
+    {
+        zzfx(...[,0,261.6256,.01,,1,,1.81,,,,,,,,,,.66,.17]); 
+    }
+
+    function onClick_D()
+    {
+        zzfx(...[,0,293.6648,.01,,1,,1.81,,,,,,,,,,.66,.17]); 
+    }
+
+    function onClick_E()
+    {
+        zzfx(...[,0,329.6276,.01,,1,,1.81,,,,,,,,,,.66,.17]);
+    }
+
+    function onClick_F()
+    {
+        zzfx(...[,0,349.2282,.01,,1,,1.81,,,,,,,,,,.66,.17]);
+    }
+
+    function onClick_G()
+    {
+        zzfx(...[,0,391.9954,.01,,1,,1.81,,,,,,,,,,.66,.17]);
+    }
+
+    function onClick_A()
+    {
+        zzfx(...[,0,440,.01,,1,,1.81,,,,,,,,,,.66,.17]);
+    }
+
+    function onClick_B()
+    {
+        zzfx(...[,0,493.8833,.01,,1,,1.81,,,,,,,,,,.66,.17]);
+    }
+
+    function onClick_Db()
+    {
+        zzfx(...[,0,277.18,.01,,1,,1.81,,,,,,,,,,.66,.17]); 
+    }
+
+    function onClick_Eb()
+    {
+        zzfx(...[,0,311.13,.01,,1,,1.81,,,,,,,,,,.66,.17]);
+    }
+
+    function onClick_Gb()
+    {
+        zzfx(...[,0,369.99,.01,,1,,1.81,,,,,,,,,,.66,.17]);
+    }
+
+    function onClick_Ab()
+    {
+        zzfx(...[,0,415.3,.01,,1,,1.81,,,,,,,,,,.66,.17]); 
+    }
+
+    function onClick_Bb()
+    {
+        zzfx(...[,0,466.16,.01,,1,,1.81,,,,,,,,,,.66,.17]);
+    }
+
+        ]]>
+    </script>
+ 
+</svg>
