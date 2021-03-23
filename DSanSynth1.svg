@@ -5,16 +5,21 @@
   style="background-color: #000;"
   version="1.1"
   xmlns="http://www.w3.org/2000/svg"
+  
 >
     <style>
 		#button {
-		    opacity: 0.5;
+		    opacity: 0.75;
 			cursor: pointer;     
 		}
+ 
+        body {
+  background-color: lightblue;
+}
 
         #button:hover
         {
-            opacity: 0.75;
+            opacity: 1.0;
         }
         #button:active
         {
@@ -22,6 +27,11 @@
             opacity: 1.0;
         }
 	</style>
+
+
+
+<rect width="100%" height="100%" fill="#333333"/>
+
 
     <script type="text/javascript">
     <![CDATA[
@@ -48,9 +58,11 @@
     var whiteNotes = [];   
     var blackNotes = [];
 
+    centerOffset = 80;
+
     for ( var i = 0; i < 7; i += 1 ) 
     {
-        const c = MakeCircle( i * 40, 200, 20, '#0031FF' )      
+        const c = MakeCircle( i * 40 + centerOffset, 200, 20, '#00B9FF' )      
         whiteNotes.push(c);
         document.documentElement.appendChild( c );
     }
@@ -62,7 +74,7 @@
         {
             offset = 60;
         }
-        const c = MakeCircle( i * 40 + offset, 165, 20, '#00219F' )      
+        const c = MakeCircle( i * 40 + offset + centerOffset, 165, 20, '#0079BF' )      
         blackNotes.push(c);
         document.documentElement.appendChild( c );
     }
